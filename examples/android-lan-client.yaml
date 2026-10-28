@@ -1,0 +1,36 @@
+# Android FlClash / Clash Meta 级联连接电脑端 SOCKS5 示例配置
+# 适用场景：手机端开启 VPN (TUN) 捕获全部 TCP/UDP 流量，并通过局域网转发给已认证的 Linux 主机
+
+mixed-port: 7890
+allow-lan: false
+mode: global
+log-level: info
+ipv6: false
+
+dns:
+  enable: true
+  ipv6: false
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+
+proxies:
+  - name: "Linux-Clash-LAN"
+    type: socks5
+    server: 10.251.2.55   # 替换为你的 Linux 主机局域网静态 IP
+    port: 7897            # 替换为你的 Linux Clash 混合端口 (Mixed Port)
+    udp: true             # 必须开启 UDP 转发以支持 TikTok QUIC 视频流
+    # username: "admin"   # 若主机开启了 authentication 认证则取消注释并填写
+    # password: "YourStrongPassword123"
+
+proxy-groups:
+  - name: PROXY
+    type: select
+    proxies:
+      - "Linux-Clash-LAN"
+
+rules:
+  - GEOIP,LAN,DIRECT,no-resolve
+  - MATCH,PROXY

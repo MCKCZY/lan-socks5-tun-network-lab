@@ -1,0 +1,25 @@
+# Clash Verge Rev / Mihomo 规则前置覆写 (Prepend Rules)
+# 解决老旧订阅将 Akamai CDN (akadns.net / edgekey.net) 强制 DIRECT 导致 TikTok 视频卡死及 AI 断联问题
+
+prepend:
+  # === TikTok 完整域名与视频流 CDN ===
+  - DOMAIN-KEYWORD,tiktok,PROXY
+  - DOMAIN-SUFFIX,tiktokv.com,PROXY
+  - DOMAIN-SUFFIX,tiktokcdn.com,PROXY
+  - DOMAIN-SUFFIX,tiktokcdn-us.com,PROXY
+  - DOMAIN-SUFFIX,byteoversea.com,PROXY
+  - DOMAIN-SUFFIX,ibytedtos.com,PROXY
+  - DOMAIN-SUFFIX,ipstatp.com,PROXY
+  - DOMAIN-SUFFIX,muscdn.com,PROXY
+  - DOMAIN-SUFFIX,musical.ly,PROXY
+
+  # === AI 服务 (OpenAI / Claude / Google Gemini) ===
+  - DOMAIN-KEYWORD,openai,PROXY
+  - DOMAIN-SUFFIX,chatgpt.com,PROXY
+  - DOMAIN-SUFFIX,oaistatic.com,PROXY
+  - DOMAIN-SUFFIX,oaiusercontent.com,PROXY
+  - DOMAIN-SUFFIX,anthropic.com,PROXY
+  - DOMAIN-SUFFIX,claude.ai,PROXY
+  - DOMAIN-SUFFIX,gemini.google.com,PROXY
+  - DOMAIN-SUFFIX,generativelanguage.googleapis.com,PROXY
+  - DOMAIN-SUFFIX,aistudio.google.com,PROXY
